@@ -32,7 +32,7 @@ public class SeleniumHandle {
             // https://chromedriver.storage.googleapis.com/index.html?path=2.35/
 
             //System.setProperty("webdriver.chrome.driver","G:\\chromedriver.exe");
-            System.setProperty("webdriver.chrome.driver","/Users/rpowell/dev/fox-automation/chromedriver");
+            //System.setProperty("webdriver.chrome.driver","/Users/rpowell/dev/fox-automation/chromedriver");
             //System.out.println("webdriver.chrome.driver: " + System.getProperty("webdriver.chrome.driver"));
             driver = new ChromeDriver();
 
@@ -43,7 +43,7 @@ public class SeleniumHandle {
             // Firefox 35.0.1
             // geckodriver geckodriver-v0.19.1-macos.tar.gz
 
-            System.setProperty("webdriver.firefox.marionette","geckodriver");
+            //System.setProperty("webdriver.firefox.marionette","geckodriver");
             driver = new FirefoxDriver();
 
         }

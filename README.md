@@ -21,7 +21,16 @@ A user account is created in the `testaCreateAccountHappyPath` method, asserting
 Run with the following:
 
 ```
-gradle test
+gradle clean test -Dwebdriver.chrome.driver={{path-to-chromedriver}}
+```
+
+Where `webdriver.chrome.driver` is the path to `chromedriver`
+
+
+Example:
+
+```
+gradle clean test -Dwebdriver.chrome.driver=/Users/rpowell/dev/fox-automation-demo/chromedriver
 ```
 
 
