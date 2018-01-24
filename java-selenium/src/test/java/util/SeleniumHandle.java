@@ -28,7 +28,16 @@ public class SeleniumHandle {
     public void setUp() {
         // declaration and instantiation of objects/variables
 
+        // TODO: use configuration/properties to determine which webdriver
+
         if (true) {
+            /**
+             * use the following to define the location of chromedriver:
+             *
+             * for gradle:
+             *    gradle clean test -Dwebdriver.chrome.driver=/Users/rpowell/dev/fox-automation-demo/chromedriver
+             */
+
             // https://chromedriver.storage.googleapis.com/index.html?path=2.35/
 
             //System.setProperty("webdriver.chrome.driver","G:\\chromedriver.exe");

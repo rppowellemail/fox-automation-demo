@@ -144,6 +144,13 @@ public class AccountPage {
         return webElement;
     }
 
+    public WebElement getElement_Account_signupErrorGenericText() {
+        String xpath = "//div[starts-with(@class, 'Account_signupErrorGenericText_')]";
+        WebElement webElement = driver.findElement(By.xpath(xpath));
+        return webElement;
+
+    }
+
     public void click_button_Done() {
         String xpath = "//button[text()='Done']";
         WebDriverWait wait = new WebDriverWait(driver, 10);
