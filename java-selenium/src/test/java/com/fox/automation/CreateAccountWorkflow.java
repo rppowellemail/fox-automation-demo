@@ -5,11 +5,9 @@ import com.fox.automation.page.AccountPage;
 import com.fox.automation.page.DefaultPage;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.*;
 import util.SeleniumHandle;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,15 +58,6 @@ public class CreateAccountWorkflow {
 
         accountPage.click_button_CreateProfile();
 
-        //System.out.println("assert: Thanks for Signing Up!");
-        //assert( accountPage.getElement_Account_signupSuccessHeaderText().getText() == "Thanks for Signing Up!");
-
-        assertEquals("Registration Complete Message - signupSuccessHeaderText", "Thanks for Signing Up!", accountPage.getElement_Account_signupSuccessHeaderText().getText());
-
-        //System.out.println("assert: Begin your personalized viewing experience now.");
-        //assert( accountPage.getElement_Account_signupSuccessText().getText() == "Begin your personalized viewing experience now.");
-        assertEquals("Registration Complete Message - signupSuccessText", "Begin your personalized viewing experience now.", accountPage.getElement_Account_signupSuccessText().getText());
-
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         String screenshotFilename = this.getClass().getSimpleName() + "-testCreateAccountHappyPath-screenshot-"+testdatestring+".png";
         System.out.println("Saving screenshot '" + screenshotFilename + "'");
@@ -79,7 +68,31 @@ public class CreateAccountWorkflow {
             e.printStackTrace();
         }
 
-        accountPage.click_button_Done();
+        try {
+            WebElement webElement;
+
+            //System.out.println("assert: Thanks for Signing Up!");
+            //assert( accountPage.getElement_Account_signupSuccessHeaderText().getText() == "Thanks for Signing Up!");
+            webElement = accountPage.getElement_Account_signupSuccessHeaderText();
+            assertEquals("Registration Complete Message - signupSuccessHeaderText", "Thanks for Signing Up!", webElement.getText());
+
+            //System.out.println("assert: Begin your personalized viewing experience now.");
+            //assert( accountPage.getElement_Account_signupSuccessText().getText() == "Begin your personalized viewing experience now.");
+            webElement = accountPage.getElement_Account_signupSuccessText();
+            assertEquals("Registration Complete Message - signupSuccessText", "Begin your personalized viewing experience now.", webElement.getText());
+
+            accountPage.click_button_Done();
+
+        } catch( NoSuchElementException exceptionLookingForSuccess) {
+            try {
+                WebElement webElement;
+                webElement = accountPage.getElement_Account_signupErrorGenericText();
+                assertEquals("Registration Complete Message - signupErrorGenericText", "Profile cannot be created at this time. Please try again later.", webElement.getText());
+                System.out.println("Registration Complete Message - signupErrorGenericText - found '" + webElement.getText()+"'");
+            } catch( NoSuchElementException exceptionLookingForFailure) {
+                exceptionLookingForFailure.printStackTrace();
+            }
+        }
 
         driver.close();
 
