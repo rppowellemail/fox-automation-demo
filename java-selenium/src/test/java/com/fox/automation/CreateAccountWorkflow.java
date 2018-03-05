@@ -84,10 +84,11 @@ public class CreateAccountWorkflow {
             accountPage.click_button_Done();
 
         } catch( NoSuchElementException exceptionLookingForSuccess) {
+            String expectedErrorMessage = "Please enter a valid email address to create a profile.";
             try {
                 WebElement webElement;
                 webElement = accountPage.getElement_Account_signupErrorGenericText();
-                assertEquals("Registration Complete Message - signupErrorGenericText", "Profile cannot be created at this time. Please try again later.", webElement.getText());
+                assertEquals("Registration Complete Message - signupErrorGenericText", expectedErrorMessage, webElement.getText());
                 System.out.println("Registration Complete Message - signupErrorGenericText - found '" + webElement.getText()+"'");
             } catch( NoSuchElementException exceptionLookingForFailure) {
                 exceptionLookingForFailure.printStackTrace();

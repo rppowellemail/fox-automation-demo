@@ -7,12 +7,13 @@ import org.openqa.selenium.WebElement;
 public class DefaultPage {
     WebDriver driver;
 
+    public static By accountLink = By.xpath("//a[@href='/account']");
+
     public DefaultPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public void click_AccountLink() {
-        String xpath = "//a[@href='/account']";
 //        WebDriverWait wait = new WebDriverWait(driver, 10);
 //        wait.until(
 //                ExpectedConditions.and(
@@ -20,7 +21,7 @@ public class DefaultPage {
 //                        ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))
 //                )
 //        );
-        WebElement webElement = driver.findElement(By.xpath(xpath));
+        WebElement webElement = driver.findElement(accountLink);
         webElement.click();
     }
 }

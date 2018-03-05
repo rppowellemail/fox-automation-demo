@@ -17,15 +17,15 @@ public class AccountPage {
     }
 
     public void click_button_SignUp() {
-        String xpath = "//button[text()='Sign Up']";
+        By By_SignUpButton = By.xpath("//button[text()='Sign Up']");
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(
                 ExpectedConditions.and(
-                        ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)),
-                        ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))
+                        ExpectedConditions.presenceOfElementLocated(By_SignUpButton),
+                        ExpectedConditions.visibilityOfElementLocated(By_SignUpButton)
                 )
         );
-        WebElement webElement = driver.findElement(By.xpath(xpath));
+        WebElement webElement = driver.findElement(By_SignUpButton);
         webElement.click();
 
     }
@@ -40,10 +40,10 @@ public class AccountPage {
          *  * Account_headerText_
          *
          */
-        String xpath ="//div[starts-with(@class, 'Account_headerText')]";
+        By By_Account_headerText = By.xpath("//div[starts-with(@class, 'Account_headerText')]");
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
-        List<WebElement> elements =  driver.findElements(By.xpath(xpath));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By_Account_headerText));
+        List<WebElement> elements =  driver.findElements(By_Account_headerText);
         return elements.get(1);
     }
 
